@@ -6,7 +6,6 @@ import com.monco.core.entity.User;
 import com.monco.core.page.PageResult;
 import com.monco.core.page.UserPage;
 import com.monco.core.query.OrderQuery;
-import com.monco.core.service.RoomInfoService;
 import com.monco.core.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
@@ -31,9 +30,6 @@ public class UserController {
 
     @Autowired
     UserService userService;
-
-    @Autowired
-    RoomInfoService roomInfoService;
 
     @PostMapping("register")
     public ApiResult save(@RequestBody UserPage userPage) {
@@ -106,8 +102,5 @@ public class UserController {
 
     public void pageToEntity(UserPage userPage, User user) {
         BeanUtils.copyProperties(userPage, user);
-        if (ArrayUtils.isNotEmpty(userPage.getRoomCollectionIds())) {
-            user.setRoomCollection(roomInfoService.findByIds(userPage.getRoomCollectionIds()));
-        }
     }
 }

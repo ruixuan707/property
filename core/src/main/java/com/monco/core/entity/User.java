@@ -108,14 +108,4 @@ public class User extends BaseEntity<Long> {
      */
     private String signature;
 
-    /**
-     * 收藏房间
-     */
-    private List<RoomInfo> roomCollection;
-
-    @ManyToMany
-    @JoinTable(name = "user_room_collection", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "room_info_id")})
-    public List<RoomInfo> getRoomCollection() {
-        return roomCollection;
-    }
 }
