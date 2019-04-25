@@ -1,6 +1,7 @@
 package com.monco.core.service;
 
 import com.monco.core.entity.BaseEntity;
+import com.monco.core.query.QueryParam;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -50,4 +51,15 @@ public interface BaseService<T extends BaseEntity<ID>, ID extends Serializable> 
 
     void deleteAll(Collection<T> collections);
 
+    /**
+     * 分页查询
+     *
+     * @param pageSize
+     * @param page
+     * @param params
+     * @param direction
+     * @param properties
+     * @return
+     */
+    Page<T> findPage(int pageSize, int page, List<QueryParam> params, String direction, String... properties);
 }

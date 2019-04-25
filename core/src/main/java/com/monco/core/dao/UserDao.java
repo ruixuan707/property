@@ -22,6 +22,4 @@ public interface UserDao extends BaseDao<User, Long> {
      */
     User findUserByUsernameAndDataDelete(String username, Integer dataDelete);
 
-
-    List<User> findUsersByUsername(String username);
 }

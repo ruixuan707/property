@@ -33,7 +33,7 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("民宿管理系统API")
+                .title("物业管理系统API")
                 .description("hugo制作")
                 .version("1.0").build();
     }

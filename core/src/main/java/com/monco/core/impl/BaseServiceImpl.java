@@ -2,15 +2,15 @@ package com.monco.core.impl;
 
 import com.monco.core.dao.BaseDao;
 import com.monco.core.entity.BaseEntity;
+import com.monco.core.entity.User;
+import com.monco.core.query.QueryParam;
+import com.monco.core.query.QueryUtils;
 import com.monco.core.service.BaseService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -215,4 +215,11 @@ public abstract class BaseServiceImpl<T extends BaseEntity<ID>, ID extends Seria
         baseDao.deleteAll(collections);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Page<T> findPage(int pageSize, int page, List<QueryParam> params, String direction, String... properties) {
+        PageRequest buildPageRequest = QueryUtils.buildPageRequest(page, pageSize, direction, properties);
+        Specification<T> buildPredicate = QueryUtils.<T>buildPredicate(params);
+        return baseDao.findAll(buildPredicate, buildPageRequest);
+    }
 }

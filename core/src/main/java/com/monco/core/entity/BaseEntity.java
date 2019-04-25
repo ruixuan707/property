@@ -29,17 +29,9 @@ public abstract class BaseEntity<ID extends Serializable> implements Serializabl
      */
     private Long version;
     /**
-     * 备注
-     */
-    private String remarks;
-    /**
-     * 状态标志位  0:停用 1:正常
-     */
-    private Integer dataStatus = 1;
-    /**
      * 删除标志位  0:正常 1:删除
      */
-    private Integer dataDelete = 0;
+    private Integer dataDelete;
     /**
      * 创建人ID
      */
@@ -101,22 +93,6 @@ public abstract class BaseEntity<ID extends Serializable> implements Serializabl
 
     public void setVersion(Long version) {
         this.version = version;
-    }
-
-    public String getRemarks() {
-        return remarks;
-    }
-
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
-    }
-
-    public Integer getDataStatus() {
-        return dataStatus;
-    }
-
-    public void setDataStatus(Integer dataStatus) {
-        this.dataStatus = dataStatus;
     }
 
     public Integer getDataDelete() {
