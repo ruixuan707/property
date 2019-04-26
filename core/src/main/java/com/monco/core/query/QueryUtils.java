@@ -15,6 +15,17 @@ import java.util.*;
 
 public class QueryUtils {
 
+    /**
+     * 默认排序
+     *
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    public static PageRequest buildPageRequest(int pageNum, int pageSize) {
+        return PageRequest.of(pageNum - 1, pageSize);
+    }
+
     /*
      * @param pageNum 当前页
      * @param pageSize 每页条数
@@ -48,7 +59,7 @@ public class QueryUtils {
     public static PageRequest buildPageRequest(int pageNum, int pageSize, Map<String, String[]> directions) {
         Sort sort = null;
         if (directions == null || directions.size() == 0) {
-            return new PageRequest(pageNum - 1, pageSize);
+            return PageRequest.of(pageNum - 1, pageSize);
         } else {
             Set<String> keySet = directions.keySet();
             for (String direction : keySet) {
@@ -63,7 +74,7 @@ public class QueryUtils {
                     sort.and(new Sort(directionType, strings));
                 }
             }
-            return new PageRequest(pageNum - 1, pageSize, sort);
+            return PageRequest.of(pageNum - 1, pageSize, sort);
         }
     }
 

@@ -27,14 +27,13 @@ public class EntityListener {
             entity.setUpdatedName(user.getUsername());
         } else {
             entity.setCreatedId(1L);
-            entity.setCreatedName("monco");
+            entity.setCreatedName("sys-init");
             entity.setUpdatedId(1L);
-            entity.setUpdatedName("monco");
+            entity.setUpdatedName("sys-init");
         }
         entity.setCreateDate(new Date());
         entity.setUpdateDate(new Date());
         entity.setDataDelete(0);
-        entity.setDataStatus(1);
         entity.setVersion(0L);
     }
 
