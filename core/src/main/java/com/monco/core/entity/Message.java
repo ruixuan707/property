@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * @Auther: monco
@@ -35,7 +36,38 @@ public class Message extends BaseEntity<Long> {
     private String title;
 
     /**
-     * 消息类型
+     * 消息类型 0 公告 1 新闻 2 消息
      */
     private Integer messageType;
+
+    /**
+     * 新闻资讯类型  1 物业新闻 2 地产新闻 3 行业动态 4 美好期刊 5 电商资讯 6 媒体报道
+     */
+    private Integer category;
+
+    /**
+     * 起始时间
+     */
+    private Date startDate;
+
+    /**
+     * 结束时间
+     */
+    private Date endDate;
+
+    /**
+     * ip地址
+     */
+    private String ipAddress;
+
+    /**
+     * 名字
+     */
+    private String nickName;
+
+    /**
+     * 点击数量
+     */
+    private Integer clickNumber;
+
 }

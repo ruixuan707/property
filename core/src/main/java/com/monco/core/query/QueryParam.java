@@ -22,6 +22,9 @@ public class QueryParam {
      */
     private MatchType matchType;
 
+    public QueryParam() {
+    }
+
     public QueryParam(String filed, MatchType matchType, Object value,
                       String connector) {
         super();
@@ -42,8 +45,9 @@ public class QueryParam {
         return filed;
     }
 
-    public void setFiled(String filed) {
+    public QueryParam setFiled(String filed) {
         this.filed = filed;
+        return this;
     }
 
 
@@ -51,23 +55,26 @@ public class QueryParam {
         return value;
     }
 
-    public void setValue(Object value) {
+    public QueryParam setValue(Object value) {
         this.value = value;
+        return this;
     }
 
     public String getConnector() {
         return connector;
     }
 
-    public void setConnector(String connector) {
+    public QueryParam setConnector(String connector) {
         this.connector = connector;
+        return this;
     }
 
     public MatchType getMatchType() {
         return matchType;
     }
 
-    public void setMatchType(MatchType matchType) {
+    public QueryParam setMatchType(MatchType matchType) {
         this.matchType = matchType;
+        return this;
     }
 }

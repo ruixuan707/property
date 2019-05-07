@@ -19,8 +19,8 @@ public class OrderQuery implements Serializable {
 
     private static final long serialVersionUID = 2492447214174358772L;
 
-    private String orderField = "id";
-    private String orderType;
+    private String orderField = "createDate";
+    private String orderType = "DESC";
 
     /**
      * 返回排序对象

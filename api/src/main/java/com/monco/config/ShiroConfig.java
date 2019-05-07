@@ -15,6 +15,7 @@ import org.springframework.context.annotation.DependsOn;
 
 import javax.servlet.Filter;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -45,16 +46,30 @@ public class ShiroConfig {
         filterMap.put("jwtToken", new JwtTokenFilter());
         factoryBean.setFilters(filterMap);
         factoryBean.setSecurityManager(defaultWebSecurityManager);
-        Map<String, String> filterRuleMap = new HashMap<>();
+        LinkedHashMap<String, String> filterRuleMap = new LinkedHashMap<>();
+        /** 登录 */
         filterRuleMap.put("/login", "anon");
+        /** 下载 */
         filterRuleMap.put("/download", "anon");
+        /** 连接池 */
         filterRuleMap.put("/druid/**", "anon");
-        filterRuleMap.put("/user/register**", "anon");
+        /** 注册 */
+        filterRuleMap.put("/user/register", "anon");
+        /** 消息 */
+        filterRuleMap.put("/message/list", "anon");
+        /** 消息详情 */
+        filterRuleMap.put("/message/detail", "anon");
+        /** 留言 */
+        filterRuleMap.put("/leave-word/list", "anon");
+        /** 提交留言 */
+        filterRuleMap.put("/leave-word/post", "anon");
+        /** 图片 */
+        filterRuleMap.put("/file/uplfmdFileToFastList", "anon");
         filterRuleMap.put("/swagger-ui.html", "anon");
         filterRuleMap.put("/webjars/**", "anon");
         filterRuleMap.put("/v2/**", "anon");
         filterRuleMap.put("/swagger-resources/**", "anon");
-//        filterRuleMap.put("/**", "jwtToken");
+        filterRuleMap.put("/**", "jwtToken");
         factoryBean.setFilterChainDefinitionMap(filterRuleMap);
         return factoryBean;
     }

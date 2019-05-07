@@ -37,6 +37,7 @@ public class UserController {
         pageToEntity(userPage, user);
         User userValidate = userService.getUserByUsername(userPage.getUsername());
         if (userValidate == null) {
+            user.setUserType(ConstantUtils.NUM_0);
             userService.save(user);
             return ApiResult.ok("注册成功");
         } else {
@@ -81,8 +82,19 @@ public class UserController {
 
     @GetMapping("list")
     public ApiResult list(@RequestParam(value = "currentPage", defaultValue = "0") Integer currentPage,
-                          @RequestParam(value = "pageSize", defaultValue = "20") Integer pageSize,
+                          @RequestParam(value = "pageSize", defaultValue = "0") Integer pageSize,
                           User user, OrderQuery orderQuery) {
+        // 如果pageSize == 0  默认查询所有
+        if (pageSize == 0) {
+            List<User> userList = userService.getUserList();
+            List<UserPage> userPageList = new ArrayList<>();
+            for (User entity : userList) {
+                UserPage userPage = new UserPage();
+                entityToPage(entity, userPage);
+                userPageList.add(userPage);
+            }
+            return ApiResult.ok(userPageList);
+        }
         Page<User> result = userService.getUserList(OrderQuery.getQuery(orderQuery, currentPage, pageSize), user);
         List<User> userList = result.getContent();
         List<UserPage> userPageList = new ArrayList<>();

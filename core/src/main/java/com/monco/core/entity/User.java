@@ -79,7 +79,7 @@ public class User extends BaseEntity<Long> {
     private String email;
 
     /**
-     * 用户类型 0 普通用户 1 商家  2 管理员
+     * 用户类型 0 普通用户 1 物业管理员  2 管理员
      */
     private Integer userType;
 

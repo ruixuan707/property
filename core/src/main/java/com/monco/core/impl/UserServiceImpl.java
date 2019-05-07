@@ -5,8 +5,10 @@ import com.monco.core.dao.UserDao;
 import com.monco.core.entity.User;
 import com.monco.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -52,5 +54,14 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
     @Override
     public User getUserByUsername(String username) {
         return userDao.findUserByUsernameAndDataDelete(username, ConstantUtils.UN_DELETE);
+    }
+
+    @Override
+    public List<User> getUserList() {
+        User user = new User();
+        user.setDataDelete(ConstantUtils.UN_DELETE);
+        Example<User> userExample = Example.of(user);
+        List<User> userList = this.findAll(userExample, Sort.by("id"));
+        return userList;
     }
 }

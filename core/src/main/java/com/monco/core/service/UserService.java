@@ -4,6 +4,8 @@ import com.monco.core.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 /**
  * @Auther: monco
  * @Date: 2019/3/24 17:17
@@ -37,4 +39,11 @@ public interface UserService extends BaseService<User, Long> {
      * @return
      */
     User getUserByUsername(String username);
+
+    /**
+     * 查找所有用户列表
+     *
+     * @return
+     */
+    List<User> getUserList();
 }

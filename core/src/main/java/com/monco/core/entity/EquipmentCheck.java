@@ -1,5 +1,6 @@
 package com.monco.core.entity;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,16 +10,16 @@ import java.util.Date;
 
 /**
  * @Auther: monco
- * @Date: 2019/4/26 12:18
- * @Description: 设备实体类
+ * @Date: 2019/4/29 15:44
+ * @Description: 设备盘点
  */
 @Entity
 @Getter
 @Setter
-@Table(name = "sys_equipment")
-public class Equipment extends BaseEntity<Long> {
+@Table(name = "sys_equipment_check")
+public class EquipmentCheck extends BaseEntity<Long> {
 
-    private static final long serialVersionUID = -4740593583148581607L;
+    private static final long serialVersionUID = 6004219230053057411L;
 
     /**
      * 设备码
@@ -53,5 +54,10 @@ public class Equipment extends BaseEntity<Long> {
     /**
      * 设备类型
      */
-    private String equipmentType;
+    private Integer equipmentType;
+
+    /**
+     * 盘点日期
+     */
+    private Date checkDate;
 }
