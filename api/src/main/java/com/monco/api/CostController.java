@@ -51,8 +51,8 @@ public class CostController {
         QueryParam queryParam = new QueryParam("dataDelete", MatchType.equal, ConstantUtils.UN_DELETE);
         params.add(queryParam);
         // 缴费用户
-        if (StringUtils.isNotBlank(cost.getNickName())) {
-            queryParam = new QueryParam("nickName", MatchType.equal, cost.getNickName());
+        if (cost.getCreatedId()!=null) {
+            queryParam = new QueryParam("createdId", MatchType.equal, cost.getCreatedId());
             params.add(queryParam);
         }
         // 开始时间
@@ -83,6 +83,15 @@ public class CostController {
             params.add(queryParam);
         }
         // 开始时间
+        if (cost.getStartDate() != null) {
+            queryParam = new QueryParam("createDate", MatchType.greaterThanOrEqualTo, cost.getStartDate());
+            params.add(queryParam);
+        }
+        // 结束时间
+        if (cost.getEndDate() != null) {
+            queryParam = new QueryParam("createDate", MatchType.lessThanOrEqualTo, cost.getEndDate());
+            params.add(queryParam);
+        }
         Page<Cost> result = costService.findPage(pageSize, currentPage, params, orderQuery.getOrderType(), orderQuery.getOrderField());
         return ApiResult.ok(result);
     }

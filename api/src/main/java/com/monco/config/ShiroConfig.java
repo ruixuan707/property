@@ -65,6 +65,11 @@ public class ShiroConfig {
         filterRuleMap.put("/leave-word/post", "anon");
         /** 图片 */
         filterRuleMap.put("/file/uplfmdFileToFastList", "anon");
+        /** 系统设置 */
+        filterRuleMap.put("/system-setting/**", "anon");
+        /** 楼房列表 */
+        filterRuleMap.put("/building/list", "anon");
+
         filterRuleMap.put("/swagger-ui.html", "anon");
         filterRuleMap.put("/webjars/**", "anon");
         filterRuleMap.put("/v2/**", "anon");

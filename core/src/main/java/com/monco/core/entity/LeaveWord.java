@@ -64,4 +64,9 @@ public class LeaveWord extends BaseEntity<Long> {
      * 留言人手机号
      */
     private String leavePhone;
+
+    /**
+     * 图片
+     */
+    private String pic;
 }

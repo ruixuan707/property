@@ -49,7 +49,6 @@ public class BuildingController {
     }
 
 
-
     @GetMapping
     public ApiResult getOne(@RequestParam Long id) {
         Building building = buildingService.find(id);
@@ -104,6 +103,11 @@ public class BuildingController {
         List<QueryParam> params = new ArrayList<>();
         QueryParam queryParam = new QueryParam("dataDelete", MatchType.equal, ConstantUtils.UN_DELETE);
         params.add(queryParam);
+        // 楼房类型
+        if (buildingPage.getBuildingType() != null) {
+            queryParam = new QueryParam("buildingType", MatchType.equal, buildingPage.getBuildingType());
+            params.add(queryParam);
+        }
         Page<Building> result = buildingService.findPage(pageSize, currentPage, params, orderQuery.getOrderType(), orderQuery.getOrderField());
         List<Building> buildingList = result.getContent();
         List<BuildingPage> buildingPageList = new ArrayList<>();
